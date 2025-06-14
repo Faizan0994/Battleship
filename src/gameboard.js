@@ -90,6 +90,20 @@ class Gameboard {
         }
         return false;
     }
+
+    prettyPrint() {
+        this.gameboard.forEach((row) => {
+            const rowStr = row
+                .map((cell) => {
+                    if (typeof cell === 'object' && cell !== null)
+                        return '[]'.padEnd(6);
+                    return String(cell).padEnd(6);
+                })
+                .join('');
+            // eslint-disable-next-line no-console
+            console.log(rowStr);
+        });
+    }
 }
 
 module.exports = Gameboard;
