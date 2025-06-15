@@ -63,10 +63,36 @@ body {
 
 .left-ctrl-panel {
     grid-column: 1 / span 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
 }
 
 .right-ctrl-panel {
     grid-column: 2 / span 1;
+}
+
+.ctrl-panel-title {
+    font-family: stencil, Arial;
+    font-size: 1.5vw;
+}
+
+.randomize,
+.start-button {
+    background: none;
+    border: 1px solid black;
+    font-family: stencil, Arial;
+    font-size: 1.2vw;
+    height: 3vw;
+    width: 10vw;
+    box-shadow: 2px 2px 0 black;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
 }
 
 .left-label,
