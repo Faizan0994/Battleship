@@ -81,6 +81,8 @@ class Gameboard {
                 this.shipsCount -= 1;
             }
             this.gameboard[x][y] = 'hit';
+        } else {
+            throw new Error('Can not hit same spot twice');
         }
     }
 
