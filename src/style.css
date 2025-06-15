@@ -159,4 +159,6 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: stencil, Arial;
+    font-size: 1.3vw;
 }
