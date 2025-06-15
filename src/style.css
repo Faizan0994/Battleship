@@ -31,30 +31,94 @@ body {
 
 .main {
     grid-row: 2 span 1;
-    border: 1px solid black;
     display: grid;
     grid-template-rows: 4fr 1fr;
 }
 
 .boards {
-    border: 1px solid black;
     grid-row: 1 span 1;
     display: flex;
     justify-content: center;
 }
 
-.left-panel {
-    border: 1px solid black;
+.left-panel,
+.right-panel {
     flex: 1;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+
+.left-panel {
+    grid-template-columns: 1fr 2fr;
 }
 
 .right-panel {
+    grid-template-columns: 2fr 1fr;
+}
+
+.left-ctrl-panel,
+.right-ctrl-panel {
+    grid-row: 2 / -1;
+}
+
+.left-ctrl-panel {
+    grid-column: 1 / span 1;
+}
+
+.right-ctrl-panel {
+    grid-column: 2 / span 1;
+}
+
+.left-label,
+.right-label {
+    display: flex;
+    grid-row: 1 / span 1;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: stencil;
+    font-size: 2vw;
+}
+
+.left-label {
+    grid-column: 2 / span 1;
+}
+
+.right-label {
+    grid-column: 1 / span 1;
+}
+
+.left-container,
+.right-container {
+    grid-row: 2 / span 1;
+    align-self: top;
+    justify-self: center;
+}
+
+.left-container {
+    grid-column: 2 / span 1;
+}
+
+.right-container {
+    grid-column: 1 / span 1;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
     border: 1px solid black;
-    flex: 1;
+}
+
+.row {
+    display: flex;
+}
+
+.block {
+    height: 2.5vw;
+    width: 2.5vw;
+    border: 1px solid black;
 }
 
 .whitespace {
-    border: 1px solid black;
     grid-row: 2 span 1;
 }
 
