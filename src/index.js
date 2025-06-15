@@ -2,7 +2,7 @@
 import './style.css';
 import Ship from './ship';
 import Player from './player';
-import createGameboard from './DOM_handler';
+import { createGameboard, displayControlPanel } from './DOM_handler';
 
 function game() {
     const user = new Player('You');
