@@ -143,6 +143,10 @@ button:hover {
     width: 2.5vw;
     border: 1px solid black;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
 }
 
 .block:hover {
@@ -161,4 +165,39 @@ button:hover {
     align-items: center;
     font-family: stencil, Arial;
     font-size: 1.3vw;
+}
+
+.ship {
+    background: repeating-linear-gradient(
+        45deg,
+        black,
+        black 1px,
+        white 1px,
+        white 4px
+    );
+
+    border: 1px solid black;
+}
+
+.hit {
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    pointer-events: none;
+}
+
+.hit::after {
+    content: 'X';
+}
+
+.miss {
+    background-color: white;
+    border: 1px solid black;
+    font-size: 1vw;
+    pointer-events: none;
+}
+
+.miss::after {
+    content: '⬤';
 }
