@@ -28,6 +28,32 @@ function createGameboard(x, y, container, id) {
     parent.appendChild(board);
 }
 
+function updateGameboard(player, hideShips = false) {
+    const backendBoard = player.gameboard.getBoard();
+    let identifier;
+    if (player.name === 'You') {
+        identifier = 'l';
+    } else if (player.name === 'AI') {
+        identifier = 'r';
+    }
+    for (let i = 0; i < player.gameboard.rows; i += 1) {
+        for (let j = 0; j < player.gameboard.columns; j += 1) {
+            const block = document.getElementById(`${identifier},${i},${j}`);
+            if (backendBoard[i][j] === 'hit') {
+                block.classList.add('hit');
+            } else if (backendBoard[i][j] === 'miss') {
+                block.classList.add('miss');
+            } else if (
+                typeof backendBoard[i][j] === 'object' &&
+                backendBoard[i][j] !== null &&
+                !hideShips
+            ) {
+                block.classList.add('ship');
+            }
+        }
+    }
+}
+
 function displayControlPanel() {
     const controlPanelParent = document.querySelector('.left-ctrl-panel');
 
@@ -47,4 +73,4 @@ function displayControlPanel() {
     controlPanelParent.appendChild(startButton);
 }
 
-export { createGameboard, displayControlPanel };
+export { createGameboard, displayControlPanel, updateGameboard };
