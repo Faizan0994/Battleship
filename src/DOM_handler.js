@@ -54,6 +54,13 @@ function updateGameboard(player, hideShips = false) {
     }
 }
 
+function getCoordinatesFromId(id) {
+    const elements = id.split(',');
+    const x = parseInt(elements[1], 10);
+    const y = parseInt(elements[2], 10);
+    return [x, y];
+}
+
 function displayControlPanel() {
     const controlPanelParent = document.querySelector('.left-ctrl-panel');
 
