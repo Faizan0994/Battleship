@@ -25,4 +25,23 @@ function createGameboard(x, y, container, id) {
     parent.appendChild(board);
 }
 
-export default createGameboard;
+function displayControlPanel() {
+    const controlPanelParent = document.querySelector('.left-ctrl-panel');
+
+    const title = document.createElement('p');
+    title.classList.add('ctrl-panel-title');
+    title.textContent = 'Place your ships';
+    controlPanelParent.appendChild(title);
+
+    const randomize = document.createElement('button');
+    randomize.classList.add('randomize');
+    randomize.textContent = 'Randomize';
+    controlPanelParent.appendChild(randomize);
+
+    const startButton = document.createElement('button');
+    startButton.classList.add('start-button');
+    startButton.textContent = 'Start Game';
+    controlPanelParent.appendChild(startButton);
+}
+
+export { createGameboard, displayControlPanel };
