@@ -2,6 +2,7 @@
 import './style.css';
 import Ship from './ship';
 import Player from './player';
+import createGameboard from './DOM_handler';
 
 function game() {
     const user = new Player('You');
@@ -44,3 +45,6 @@ function randomlyPlaceShips(player, shipSet) {
 
 const userShipSet = createShipSet();
 const cpuShipSet = createShipSet();
+
+createGameboard(10, 10, 'left', 'left-board');
+createGameboard(10, 10, 'right', 'right-board');
