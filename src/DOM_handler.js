@@ -3,10 +3,13 @@ const rightPanel = document.querySelector('.right-container');
 
 function createGameboard(x, y, container, id) {
     let parent;
+    let identifier;
     if (container === 'left') {
         parent = leftPanel;
+        identifier = 'l';
     } else if (container === 'right') {
         parent = rightPanel;
+        identifier = 'r';
     }
     const board = document.createElement('div');
     board.classList.add('board');
@@ -17,7 +20,7 @@ function createGameboard(x, y, container, id) {
         for (let j = 0; j < y; j += 1) {
             const block = document.createElement('div');
             block.classList.add('block');
-            block.setAttribute('id', `${x},${y}`);
+            block.setAttribute('id', `${identifier},${i},${j}`);
             row.appendChild(block);
         }
         board.appendChild(row);
