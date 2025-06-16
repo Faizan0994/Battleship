@@ -53,6 +53,7 @@ async function gameLoop() {
             if (window.cpu.gameboard.allShipsSunk()) {
                 window.gameOver = true;
                 window.winner = 'user';
+                window.isUsersTurn = false; // To prevent user from further attacks after the game has ended
                 return;
             }
             window.isUsersTurn = false;
