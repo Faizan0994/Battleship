@@ -80,4 +80,9 @@ function displayControlPanel() {
     controlPanelParent.appendChild(startButton);
 }
 
-export { createGameboard, displayControlPanel, updateGameboard };
+export {
+    createGameboard,
+    displayControlPanel,
+    updateGameboard,
+    getCoordinatesFromId,
+};
