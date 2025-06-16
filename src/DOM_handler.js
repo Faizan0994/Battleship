@@ -40,6 +40,7 @@ function updateGameboard(player, hideShips = false) {
         for (let j = 0; j < player.gameboard.columns; j += 1) {
             const block = document.getElementById(`${identifier},${i},${j}`);
             if (backendBoard[i][j] === 'hit') {
+                block.classList.remove('ship');
                 block.classList.add('hit');
             } else if (backendBoard[i][j] === 'miss') {
                 block.classList.add('miss');
