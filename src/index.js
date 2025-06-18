@@ -29,6 +29,7 @@ async function game(userShipSet, cpuShipSet, userGameboard = null) {
     window.turnTaken = null;
     window.isUsersTurn = true;
     window.winner = 'no one yet';
+    window.successfulHit = false;
 
     createGameboard(10, 10, 'left', 'left-board');
     createGameboard(10, 10, 'right', 'right-board');
@@ -75,7 +76,9 @@ async function gameLoop() {
                 window.isUsersTurn = false; // To prevent user from further attacks after the game has ended
                 return;
             }
-            window.isUsersTurn = false;
+            if (!window.successfulHit) {
+                window.isUsersTurn = false;
+            }
         } else {
             // eslint-disable-next-line no-promise-executor-return
             await new Promise((res) => setTimeout(res, 1000)); // delay cpu's attack
@@ -85,7 +88,9 @@ async function gameLoop() {
                 window.winner = 'cpu';
                 return;
             }
-            window.isUsersTurn = true;
+            if (!window.successfulHit) {
+                window.isUsersTurn = true;
+            }
         }
     }
 }
