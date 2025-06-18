@@ -81,10 +81,10 @@ function waitForTurn() {
 }
 
 function cpuAttack() {
-    const x = Math.floor(Math.random() * 10);
-    const y = Math.floor(Math.random() * 10);
     let attackNotRegistered = true;
     while (attackNotRegistered) {
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
         try {
             window.user.gameboard.receiveAttack(x, y);
             updateGameboard(window.user);
