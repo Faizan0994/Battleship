@@ -1,3 +1,9 @@
+import attack from './assets/attack.mp3';
+import hit from './assets/hit.mp3';
+
+const attackSound = new Audio(attack);
+const hitSound = new Audio(hit);
+
 class Gameboard {
     constructor(x, y) {
         this.rows = x;
@@ -75,12 +81,18 @@ class Gameboard {
             throw new Error('Attack out of bounds');
         } else if (this.gameboard[x][y] === null) {
             this.gameboard[x][y] = 'miss';
+            attackSound.pause();
+            attackSound.currentTime = 0;
+            attackSound.play();
         } else if (typeof this.gameboard[x][y] === 'object') {
             this.gameboard[x][y].hit();
             if (this.gameboard[x][y].isSunk()) {
                 this.shipsCount -= 1;
             }
             this.gameboard[x][y] = 'hit';
+            hitSound.pause();
+            hitSound.currentTime = 0;
+            hitSound.play();
         } else {
             throw new Error('Can not hit same spot twice');
         }
