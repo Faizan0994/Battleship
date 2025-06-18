@@ -175,6 +175,7 @@ function startNewGame() {
         updateGameboard(gameboard, 'user');
     });
     document.querySelector('.start-button').addEventListener('click', () => {
+        showPopup('The Battle Begins', 1500);
         game(userShipSet, cpuShipSet, gameboard);
     });
 }
