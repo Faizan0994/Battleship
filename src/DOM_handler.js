@@ -11,6 +11,11 @@ function createGameboard(x, y, container, id) {
         parent = rightPanel;
         identifier = 'r';
     }
+
+    while (parent.firstChild) {
+        parent.removeChild(parent.lastChild);
+    }
+
     const board = document.createElement('div');
     board.classList.add('board');
     board.setAttribute('id', id);
@@ -81,6 +86,13 @@ function displayControlPanel() {
     controlPanelParent.appendChild(startButton);
 }
 
+function hideControlPanel() {
+    const controlPanelParent = document.querySelector('.left-ctrl-panel');
+    while (controlPanelParent.firstChild) {
+        controlPanelParent.removeChild(controlPanelParent.firstChild);
+    }
+}
+
 function showPopup(message, duration = 3000) {
     const popup = document.getElementById('popup');
     popup.textContent = message;
@@ -126,4 +138,5 @@ export {
     showPopup,
     displayPlayAgainButton,
     displayRulesButton,
+    hideControlPanel,
 };
