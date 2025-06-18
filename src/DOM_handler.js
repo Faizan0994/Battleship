@@ -33,16 +33,16 @@ function createGameboard(x, y, container, id) {
     parent.appendChild(board);
 }
 
-function updateGameboard(player, hideShips = false) {
-    const backendBoard = player.gameboard.getBoard();
+function updateGameboard(board, playerName, hideShips = false) {
+    const backendBoard = board.getBoard();
     let identifier;
-    if (player.name === 'user') {
+    if (playerName === 'user') {
         identifier = 'l';
-    } else if (player.name === 'cpu') {
+    } else if (playerName === 'cpu') {
         identifier = 'r';
     }
-    for (let i = 0; i < player.gameboard.rows; i += 1) {
-        for (let j = 0; j < player.gameboard.columns; j += 1) {
+    for (let i = 0; i < board.rows; i += 1) {
+        for (let j = 0; j < board.columns; j += 1) {
             const block = document.getElementById(`${identifier},${i},${j}`);
             if (backendBoard[i][j] === 'hit') {
                 block.classList.remove('ship');
@@ -55,6 +55,11 @@ function updateGameboard(player, hideShips = false) {
                 !hideShips
             ) {
                 block.classList.add('ship');
+            } else if (backendBoard[i][j] === null) {
+                // to fix problems with refresh
+                block.classList.remove('ship');
+                block.classList.remove('hit');
+                block.classList.remove('miss');
             }
         }
     }
