@@ -12,8 +12,8 @@ import {
 } from './DOM_handler';
 
 async function game() {
-    window.user = new Player('You');
-    window.cpu = new Player('AI');
+    window.user = new Player('user');
+    window.cpu = new Player('cpu');
     window.gameOver = false;
     window.turnTaken = null;
     window.isUsersTurn = true;
