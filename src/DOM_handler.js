@@ -95,10 +95,23 @@ function showPopup(message, duration = 3000) {
     });
 }
 
+function displayPlayAgainButton() {
+    const container = document.querySelector('.whitespace');
+    while (container.firstChild) {
+        // Remove the already existing button
+        container.removeChild(container.firstChild);
+    }
+    const playAgainButton = document.createElement('button');
+    playAgainButton.classList.add('play-again-button');
+    playAgainButton.textContent = 'Play Again';
+    container.appendChild(playAgainButton);
+}
+
 export {
     createGameboard,
     displayControlPanel,
     updateGameboard,
     getCoordinatesFromId,
     showPopup,
+    displayPlayAgainButton,
 };
