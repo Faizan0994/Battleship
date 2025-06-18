@@ -11,9 +11,10 @@ import {
     showPopup,
     displayRulesButton,
     displayPlayAgainButton,
+    hideControlPanel,
 } from './DOM_handler';
 
-async function game() {
+async function game(userShipSet, cpuShipSet) {
     window.user = new Player('user');
     window.cpu = new Player('cpu');
     window.gameOver = false;
@@ -23,6 +24,8 @@ async function game() {
 
     createGameboard(10, 10, 'left', 'left-board');
     createGameboard(10, 10, 'right', 'right-board');
+
+    hideControlPanel();
 
     // Place ships on the boards
     randomlyPlaceShips(window.user, userShipSet);
@@ -147,6 +150,21 @@ async function handleGameEnding(winner) {
     displayPlayAgainButton();
 }
 
-const userShipSet = createShipSet();
-const cpuShipSet = createShipSet();
-game();
+function startNewGame() {
+    const userShipSet = createShipSet();
+    const cpuShipSet = createShipSet();
+
+    createGameboard(10, 10, 'left', 'left-board');
+    createGameboard(10, 10, 'right', 'right-board');
+    displayControlPanel();
+
+    document.querySelector('.randomize').addEventListener('click', () => {
+        randomlyPlaceShips(window.user, userShipSet);
+        // more actions to come
+    });
+    document.querySelector('.start-button').addEventListener('click', () => {
+        game(userShipSet, cpuShipSet);
+    });
+}
+
+startNewGame();
