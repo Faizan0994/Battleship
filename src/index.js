@@ -45,7 +45,7 @@ async function game(userShipSet, cpuShipSet, userGameboard = null) {
     randomlyPlaceShips(window.cpu.gameboard, cpuShipSet);
 
     updateGameboard(window.user.gameboard, 'user');
-    updateGameboard(window.cpu.gameboard, 'cpu', false); // Hide cpu's ships
+    updateGameboard(window.cpu.gameboard, 'cpu', true); // Hide cpu's ships
 
     // Allowing user to attack
     const blocks = document.querySelectorAll('#right-board .block');
@@ -53,7 +53,7 @@ async function game(userShipSet, cpuShipSet, userGameboard = null) {
         block.addEventListener('click', () => {
             if (window.isUsersTurn) {
                 registerStrike(block.id, window.cpu, true);
-                updateGameboard(window.cpu.gameboard, 'cpu');
+                updateGameboard(window.cpu.gameboard, 'cpu', true);
                 if (typeof window.turnTaken === 'function') {
                     window.turnTaken(); // indicates the turn being taken
                 }
