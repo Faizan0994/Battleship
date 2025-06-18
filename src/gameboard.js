@@ -84,6 +84,8 @@ class Gameboard {
             attackSound.pause();
             attackSound.currentTime = 0;
             attackSound.play();
+
+            window.successfulHit = false;
         } else if (typeof this.gameboard[x][y] === 'object') {
             this.gameboard[x][y].hit();
             if (this.gameboard[x][y].isSunk()) {
@@ -93,6 +95,8 @@ class Gameboard {
             hitSound.pause();
             hitSound.currentTime = 0;
             hitSound.play();
+
+            window.successfulHit = true;
         } else {
             throw new Error('Can not hit same spot twice');
         }
