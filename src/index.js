@@ -13,8 +13,9 @@ import {
     displayPlayAgainButton,
     hideControlPanel,
 } from './DOM_handler';
+import Gameboard from './gameboard';
 
-async function game(userShipSet, cpuShipSet) {
+async function game(userShipSet, cpuShipSet, userGameboard = null) {
     window.user = new Player('user');
     window.cpu = new Player('cpu');
     window.gameOver = false;
@@ -28,11 +29,15 @@ async function game(userShipSet, cpuShipSet) {
     hideControlPanel();
 
     // Place ships on the boards
-    randomlyPlaceShips(window.user, userShipSet);
-    randomlyPlaceShips(window.cpu, cpuShipSet);
+    if (!userGameboard) {
+        randomlyPlaceShips(window.user.gameboard, userShipSet);
+    } else {
+        window.user.gameboard = userGameboard;
+    }
+    randomlyPlaceShips(window.cpu.gameboard, cpuShipSet);
 
-    updateGameboard(window.user);
-    updateGameboard(window.cpu, false); // Hide cpu's ships
+    updateGameboard(window.user.gameboard, 'user');
+    updateGameboard(window.cpu.gameboard, 'cpu', false); // Hide cpu's ships
 
     // Allowing user to attack
     const blocks = document.querySelectorAll('#right-board .block');
@@ -40,7 +45,7 @@ async function game(userShipSet, cpuShipSet) {
         block.addEventListener('click', () => {
             if (window.isUsersTurn) {
                 registerStrike(block.id, window.cpu, true);
-                updateGameboard(window.cpu);
+                updateGameboard(window.cpu.gameboard, 'cpu');
                 if (typeof window.turnTaken === 'function') {
                     window.turnTaken(); // indicates the turn being taken
                 }
@@ -92,7 +97,7 @@ function cpuAttack() {
         const y = Math.floor(Math.random() * 10);
         try {
             window.user.gameboard.receiveAttack(x, y);
-            updateGameboard(window.user);
+            updateGameboard(window.user.gameboard, 'user');
             attackNotRegistered = false;
         } catch {
             // no actions necessary
@@ -111,7 +116,7 @@ function createShipSet() {
     return [ship1, ship2, ship3, ship4, ship5, ship6];
 }
 
-function randomlyPlaceShips(player, shipSet) {
+function randomlyPlaceShips(gameboard, shipSet) {
     const placements = ['horizontal', 'vertical'];
     let i = 0;
     while (i <= 5) {
@@ -122,7 +127,7 @@ function randomlyPlaceShips(player, shipSet) {
         const orientation = placements[Math.floor(Math.random() * 2)];
 
         try {
-            player.gameboard.placeShip(shipSet[i], x, y, orientation);
+            gameboard.placeShip(shipSet[i], x, y, orientation);
             i += 1;
         } catch (err) {
             // no actions necessary
@@ -157,6 +162,7 @@ async function handleGameEnding(winner) {
 function startNewGame() {
     const userShipSet = createShipSet();
     const cpuShipSet = createShipSet();
+    let gameboard;
 
     createGameboard(10, 10, 'left', 'left-board');
     createGameboard(10, 10, 'right', 'right-board');
@@ -164,11 +170,12 @@ function startNewGame() {
     displayRulesButton();
 
     document.querySelector('.randomize').addEventListener('click', () => {
-        randomlyPlaceShips(window.user, userShipSet);
-        // more actions to come
+        gameboard = new Gameboard(10, 10);
+        randomlyPlaceShips(gameboard, userShipSet);
+        updateGameboard(gameboard, 'user');
     });
     document.querySelector('.start-button').addEventListener('click', () => {
-        game(userShipSet, cpuShipSet);
+        game(userShipSet, cpuShipSet, gameboard);
     });
 }
 
