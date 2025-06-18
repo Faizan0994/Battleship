@@ -8,6 +8,7 @@ import {
     displayControlPanel,
     updateGameboard,
     getCoordinatesFromId,
+    showPopup,
 } from './DOM_handler';
 
 async function game() {
@@ -43,6 +44,7 @@ async function game() {
     });
 
     await gameLoop();
+    handleGameEnding(window.winner);
 }
 
 async function gameLoop() {
@@ -129,6 +131,14 @@ function registerStrike(id, opponent, isUsersTurn = false) {
         const x = coordinates[0];
         const y = coordinates[1];
         opponent.gameboard.receiveAttack(x, y);
+    }
+}
+
+async function handleGameEnding(winner) {
+    if (winner === 'user') {
+        await showPopup('YOU WIN!');
+    } else {
+        await showPopup('YOU LOSE!');
     }
 }
 
