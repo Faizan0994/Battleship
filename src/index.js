@@ -9,6 +9,8 @@ import {
     updateGameboard,
     getCoordinatesFromId,
     showPopup,
+    displayRulesButton,
+    displayPlayAgainButton,
 } from './DOM_handler';
 
 async function game() {
@@ -28,6 +30,8 @@ async function game() {
 
     updateGameboard(window.user);
     updateGameboard(window.cpu, false); // Hide cpu's ships
+
+    displayRulesButton();
 
     // Allowing user to attack
     const blocks = document.querySelectorAll('#right-board .block');
@@ -140,6 +144,7 @@ async function handleGameEnding(winner) {
     } else {
         await showPopup('YOU LOSE!');
     }
+    displayPlayAgainButton();
 }
 
 const userShipSet = createShipSet();
