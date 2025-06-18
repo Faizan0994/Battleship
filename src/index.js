@@ -14,6 +14,13 @@ import {
     hideControlPanel,
 } from './DOM_handler';
 import Gameboard from './gameboard';
+import bg from './assets/bg.mp3';
+import win from './assets/win.mp3';
+
+const bgMusic = new Audio(bg);
+bgMusic.volume = 0.8;
+
+const winningMusic = new Audio(win);
 
 async function game(userShipSet, cpuShipSet, userGameboard = null) {
     window.user = new Player('user');
@@ -146,6 +153,9 @@ function registerStrike(id, opponent, isUsersTurn = false) {
 
 async function handleGameEnding(winner) {
     if (winner === 'user') {
+        bgMusic.pause();
+        winningMusic.currentTime = 0;
+        winningMusic.play();
         await showPopup('YOU WIN!');
     } else {
         await showPopup('YOU LOSE!');
@@ -155,6 +165,7 @@ async function handleGameEnding(winner) {
     document
         .querySelector('.play-again-button')
         .addEventListener('click', () => {
+            winningMusic.pause();
             startNewGame();
         });
 }
@@ -175,6 +186,9 @@ function startNewGame() {
         updateGameboard(gameboard, 'user');
     });
     document.querySelector('.start-button').addEventListener('click', () => {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+        bgMusic.play();
         showPopup('The Battle Begins', 1500);
         game(userShipSet, cpuShipSet, gameboard);
     });
