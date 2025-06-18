@@ -31,9 +31,9 @@ function createGameboard(x, y, container, id) {
 function updateGameboard(player, hideShips = false) {
     const backendBoard = player.gameboard.getBoard();
     let identifier;
-    if (player.name === 'You') {
+    if (player.name === 'user') {
         identifier = 'l';
-    } else if (player.name === 'AI') {
+    } else if (player.name === 'cpu') {
         identifier = 'r';
     }
     for (let i = 0; i < player.gameboard.rows; i += 1) {
