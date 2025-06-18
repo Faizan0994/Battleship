@@ -201,3 +201,27 @@ button:hover {
 .miss::after {
     content: '⬤';
 }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 1vw 2vw;
+    border: 0.25vw solid black;
+    border-radius: 0.5vw;
+    font-size: 1.4vw;
+    font-weight: bold;
+    opacity: 1;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    box-shadow: 0 0 0.5vw rgba(0, 0, 0, 0.2);
+    font-family: stencil;
+}
+
+.hidden {
+    display: none;
+}
