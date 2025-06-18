@@ -34,8 +34,6 @@ async function game(userShipSet, cpuShipSet) {
     updateGameboard(window.user);
     updateGameboard(window.cpu, false); // Hide cpu's ships
 
-    displayRulesButton();
-
     // Allowing user to attack
     const blocks = document.querySelectorAll('#right-board .block');
     blocks.forEach((block) => {
@@ -148,6 +146,12 @@ async function handleGameEnding(winner) {
         await showPopup('YOU LOSE!');
     }
     displayPlayAgainButton();
+    // make play again button functional
+    document
+        .querySelector('.play-again-button')
+        .addEventListener('click', () => {
+            startNewGame();
+        });
 }
 
 function startNewGame() {
@@ -157,6 +161,7 @@ function startNewGame() {
     createGameboard(10, 10, 'left', 'left-board');
     createGameboard(10, 10, 'right', 'right-board');
     displayControlPanel();
+    displayRulesButton();
 
     document.querySelector('.randomize').addEventListener('click', () => {
         randomlyPlaceShips(window.user, userShipSet);
