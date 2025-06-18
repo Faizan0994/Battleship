@@ -97,14 +97,25 @@ function showPopup(message, duration = 3000) {
 
 function displayPlayAgainButton() {
     const container = document.querySelector('.whitespace');
-    while (container.firstChild) {
-        // Remove the already existing button
-        container.removeChild(container.firstChild);
-    }
     const playAgainButton = document.createElement('button');
     playAgainButton.classList.add('play-again-button');
     playAgainButton.textContent = 'Play Again';
     container.appendChild(playAgainButton);
+}
+
+function displayRulesButton() {
+    const container = document.querySelector('.whitespace');
+    while (container.firstChild) {
+        // Remove the already existing button
+        container.removeChild(container.firstChild);
+    }
+    const rulesButton = document.createElement('button');
+    rulesButton.classList.add('rules-button');
+    rulesButton.textContent = 'Rules';
+    rulesButton.addEventListener('click', () => {
+        window.open('https://example.com', '_blank');
+    });
+    container.appendChild(rulesButton);
 }
 
 export {
@@ -114,4 +125,5 @@ export {
     getCoordinatesFromId,
     showPopup,
     displayPlayAgainButton,
+    displayRulesButton,
 };
