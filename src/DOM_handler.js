@@ -125,7 +125,10 @@ function displayRulesButton() {
     rulesButton.classList.add('rules-button');
     rulesButton.textContent = 'Rules';
     rulesButton.addEventListener('click', () => {
-        window.open('https://example.com', '_blank');
+        window.open(
+            'https://en.wikipedia.org/wiki/Battleship_(game)#Description',
+            '_blank'
+        );
     });
     container.appendChild(rulesButton);
 }
