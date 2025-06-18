@@ -81,9 +81,24 @@ function displayControlPanel() {
     controlPanelParent.appendChild(startButton);
 }
 
+function showPopup(message, duration = 3000) {
+    const popup = document.getElementById('popup');
+    popup.textContent = message;
+    popup.classList.remove('hidden');
+    popup.style.opacity = '1';
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            popup.classList.add('hidden');
+            resolve(); // allow awaiting
+        }, duration);
+    });
+}
+
 export {
     createGameboard,
     displayControlPanel,
     updateGameboard,
     getCoordinatesFromId,
+    showPopup,
 };
